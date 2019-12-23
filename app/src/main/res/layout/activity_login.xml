@@ -11,14 +11,14 @@
        android:id="@+id/username"
        android:layout_width="match_parent"
        android:layout_height="wrap_content"
-       android:text="JamesA"
+       android:text="QuinnD"
        />
 
     <EditText
         android:id="@+id/password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="james@2015"
+        android:text="quinn@2019"
         />
 
     <Button

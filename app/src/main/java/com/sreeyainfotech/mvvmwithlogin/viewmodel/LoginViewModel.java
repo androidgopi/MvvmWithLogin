@@ -12,10 +12,10 @@ public class LoginViewModel extends ViewModel {
     LoginRepositiry loginRepositiry=new LoginRepositiry();
 
     public LiveData<LoginModel> getLoginModelLiveValueData( String username, String password){
-     //  if(loginModelLiveData== null) {
+       if(loginModelLiveData== null) {
            loginModelLiveData=loginRepositiry.getLoginModelLiveData(username,password);
 
-     //  }
+       }
        return loginModelLiveData;
     }
 }

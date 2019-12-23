@@ -15,25 +15,31 @@ import retrofit2.Response;
 
 public class LoadDetailRepository {
 
+    private static LoadDetailRepository instances;
 
-   List<LoadDetails> loadDetailsArrayList=new ArrayList<LoadDetails>();
+    List<LoadDetails> loadDetailsArrayList = new ArrayList<LoadDetails>();
 
-
+    public static LoadDetailRepository getInstance() {
+        if (instances == null) {
+            instances = new LoadDetailRepository();
+        }
+        return instances;
+    }
 
     public LiveData<List<LoadDetails>> getMutubleLiveDataLoadDetails(String driverId, String token) {
 
         final MutableLiveData<List<LoadDetails>> loadDetailsMutableLiveData = new MutableLiveData<>();
 
-        Call<List<LoadDetails>> call_loadDetals = Utilities.getApiInterface().assaignedLoadsByDriver(driverId,token);
+        Call<List<LoadDetails>> call_loadDetals = Utilities.getApiInterface().assaignedLoadsByDriver(driverId, token);
         call_loadDetals.enqueue(new Callback<List<LoadDetails>>() {
             @Override
             public void onResponse(Call<List<LoadDetails>> call, Response<List<LoadDetails>> response) {
-                if(response.isSuccessful()){
-                    loadDetailsArrayList=response.body();
+                if (response.isSuccessful()) {
+                    loadDetailsArrayList = response.body();
                     loadDetailsMutableLiveData.setValue(loadDetailsArrayList);
-                }else {
+                } else {
                     //clear the list
-                    loadDetailsArrayList=response.body();
+                    loadDetailsArrayList = response.body();
                     loadDetailsMutableLiveData.setValue(loadDetailsArrayList);
                 }
             }

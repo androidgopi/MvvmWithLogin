@@ -20,15 +20,19 @@ public class LoadDetailViewModel extends ViewModel {
 
     public static LoadDetailViewModel getInstance() {
         if (instances == null) {
+
             instances = new LoadDetailViewModel();
         }
         return instances;
     }
 
+
     public LiveData<List<LoadDetails>> getLoadDetailsLiveData(Context context) {
 
+        loadDetailRepository= LoadDetailRepository.getInstance();
+
         String driverId = Utilities.getPref(context, "driverId", "");
-        String token = Utilities.getPref(context, "token", "");
+        String token = "Bearer"+" "+Utilities.getPref(context, "token", "");
         try {
             loadDetailsLiveData = loadDetailRepository.getMutubleLiveDataLoadDetails(driverId, token);
         } catch (NullPointerException e) {
